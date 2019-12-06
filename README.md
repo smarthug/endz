@@ -18,6 +18,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  - [ ] https://github.com/YouYII/EasyReader
 
 
+## Design Reference
+- [ ]  https://gall.dcinside.com/mgallery/board/lists/?id=seoul2033
+
 
 
 
