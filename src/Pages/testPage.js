@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useStore} from './global'
+import {useStore} from '../global'
 
 import produce from "immer"
 
