@@ -9,6 +9,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [x] immer
 - [x] https://github.com/mattboldt/typed.js/
 - [ ] https://github.com/jstejada/react-typist
+- [ ] react-windows
+- [ ] write a own novel
 
 
 
