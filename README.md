@@ -16,6 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Design Reference
 - [ ]  https://gall.dcinside.com/mgallery/board/lists/?id=seoul2033
 - [ ]  https://chatie.me/studio
+- [ ]  https://github.com/IllgamhoDuck/ko_novel_generator
 
 
 ## Install 
