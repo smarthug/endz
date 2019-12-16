@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Sample Scene
-- [x] https://codesandbox.io/s/github/smarthug/Typed.js-test/tree/master/
+- [x] https://codesandbox.io/s/typedjs-test-bxp35?fontsize=14&hidenavigation=1&theme=dark
 
 
 ## TODO
