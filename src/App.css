@@ -1,5 +1,10 @@
 .App {
-  text-align: center;
+  text-align: justify;
+}
+
+/* Cursor */
+.typed-cursor {
+  visibility: hidden;
 }
 
 .App-logo {
