@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## FrameWork - on develop
+- each page needs its own plugin. (ex: img, ) , plugins will be made by user. users gonna write single js file with single function. 
+
 ## Sample Scene
 - [x] https://codesandbox.io/s/typedjs-test-bxp35?fontsize=14&hidenavigation=1&theme=dark
 
