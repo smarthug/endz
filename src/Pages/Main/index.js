@@ -1,62 +1,64 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState ,useRef, useEffect } from "react";
 import Typed from "typed.js";
 
-import {data} from '../../global'
+import { data } from '../../global'
+import {Plugins} from '../../Plugins'
 
 export default function Main() {
     const textRef = useRef(null);
     const sampleRef = useRef(null);
+    const [pageNum , setPageNum] = useState(0);
 
     useEffect(() => {
-        Next();
+        Next(pageNum);
 
-      
+
     }, []);
 
     // 인자로 페이지나 다음으로 갈곳에 대한 객체를 받고 다음 씬을 추가 .. 
-    function Next() {
+    function Next(pageNum) {
         console.log("Next");
 
-       
-        var b = document.createElement("img")
-        b.src = "https://cpb-us-w2.wpmucdn.com/blogs.baylor.edu/dist/c/3127/files/2015/12/DQ-Screen-Shot-2015-12-04-at-4.10.29-PM-29wbxtz.png"
-        b.width = window.innerWidth;
-        sampleRef.current.appendChild(b)
-       
 
-        
+        console.log(data.pages[pageNum].type)
+
+        // plugin style...
+        Plugins[data.pages[pageNum].type]({sampleRef:sampleRef, pageNum:pageNum})
+
+
+
 
         var d = document.createElement("div")
         sampleRef.current.appendChild(d)
-       
+
 
         var options = {
-            strings: [data.pages[0].text],
-            typeSpeed: 2,
+            strings: [data.pages[pageNum].text],
+            typeSpeed: 70,
             backSpeed: 0,
             onComplete: (self) => {
                 console.log(self);
-                Next();
+                Next(pageNum);
             },
             loop: false
 
         };
 
         const typed = new Typed(d, options);
-        
 
-        
+
+
 
 
     }
 
     return (
         <div ref={sampleRef} className="App">
-            
 
+      
             <h1>Don quixote</h1>
 
-           
+
 
         </div>
     );
