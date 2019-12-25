@@ -1,15 +1,27 @@
-import React, { useState ,useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Typed from "typed.js";
 
 import { data } from '../../global'
-import {Plugins} from '../../Plugins'
+import { Plugins } from '../../Plugins'
+
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure({autoClose:false, position:"bottom-center"})
+
 
 export default function Main() {
     const textRef = useRef(null);
     const sampleRef = useRef(null);
-    const [pageNum , setPageNum] = useState(0);
+    const [pageNum, setPageNum] = useState(0);
+
+    const notify = (text) => toast(text, {onClick: ()=>{console.log(text);}});
 
     useEffect(() => {
+        notify("A로 간다");
+        notify("B로 간다");
+        notify("C로 간다");
         Next(pageNum);
 
 
@@ -23,7 +35,7 @@ export default function Main() {
         console.log(data.pages[pageNum].type)
 
         // plugin style...
-        Plugins[data.pages[pageNum].type]({sampleRef:sampleRef, pageNum:pageNum})
+        var cb = Plugins[data.pages[pageNum].type]({ sampleRef: sampleRef, pageNum: pageNum })
 
 
 
@@ -39,6 +51,7 @@ export default function Main() {
             onComplete: (self) => {
                 console.log(self);
                 Next(pageNum);
+                cb();
             },
             loop: false
 
@@ -55,7 +68,7 @@ export default function Main() {
     return (
         <div ref={sampleRef} className="App">
 
-      
+
             <h1>Don quixote</h1>
 
 

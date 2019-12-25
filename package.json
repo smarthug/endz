@@ -10,6 +10,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
+    "react-toastify": "^5.4.1",
     "react-window": "^1.8.5",
     "typed.js": "^2.0.11",
     "zustand": "^2.2.1"
