@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
+
+
 ## FrameWork - on develop
 - each page needs its own plugin. (ex: img, ) , plugins will be made by user. users gonna write single js file with single function. 
 
@@ -14,6 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] https://github.com/jstejada/react-typist
 - [ ] react-windows
 - [ ] write a own novel
+- [x] https://github.com/fkhadra/react-toastify for divergence
 
 
 
@@ -36,6 +41,11 @@ npm install
 npm start
 ```
 
+
+## Project Overview
+- Novel - on priority
+- Novel Platform - second priority
+- Novel editor - last , going to use VSCode for now
 
 
 
