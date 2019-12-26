@@ -3,6 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 <h1>  EndZ - Minimal , but infinite reading experience </h1>
 
+[Demo](https://build-dv43vhph1.now.sh/) - for mobile
 
 ## Purpose
 The goal of this project is to maximaze reading experience in web. We can read text through web, but we don't fully use web's capability.  Thanks to great development on web,  web can do almost everything. (ex: 3D graphics, deep learning) We should use these great features to maximaze our reading exprience.
