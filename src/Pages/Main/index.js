@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-toast.configure({autoClose:false, position:"bottom-center"})
+toast.configure({ autoClose: false, position: "bottom-center" })
 
 
 export default function Main() {
@@ -16,7 +16,7 @@ export default function Main() {
     const sampleRef = useRef(null);
     const [pageNum, setPageNum] = useState(0);
 
-    const notify = (text) => toast(text, {onClick: ()=>{console.log(text);}});
+    const notify = (text) => toast(text, { onClick: () => { console.log(text); } });
 
     useEffect(() => {
         notify("A로 간다");
@@ -76,3 +76,5 @@ export default function Main() {
         </div>
     );
 }
+
+
