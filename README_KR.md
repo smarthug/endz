@@ -11,9 +11,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## Project Design
--각 페이지에는 자체 플러그인이 필요합니다. (예 : img, 분기) 플러그인은 사용자가 작성합니다. 사용자는 하나의 함수를 가진 하나의 js 파일을 작성합니다.
--Zustand 및 Immer를 통해 설정 전역 관리
--책의 내용은 JSON으로 표시됩니다
+- 각 페이지에는 자체 플러그인이 필요합니다. (예 : img, 분기) 플러그인은 사용자가 작성합니다. 사용자는 하나의 함수를 가진 하나의 js 파일을 작성합니다.
+- Zustand 및 Immer를 통해 설정 전역 관리
+- 책의 내용은 JSON으로 표시됩니다
 
 
 ## Data Schema
