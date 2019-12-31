@@ -19,6 +19,8 @@ import ArrowForwardIos from "@material-ui/icons/ArrowForwardIosOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import SelectPopCard from "./selectable";
 
+import { FirstChapter } from "../Contents"
+
 const styles = makeStyles(theme => ({
   dragableItem: {
     backgroundColor: "#fff",
@@ -43,11 +45,11 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-const contents = `상상의 집. \n
+const contents = `상상의 집.
 엔즈에 오신걸 환영합니다.\n
-당신의 인생은 항상 선택의 연속이며 음....\n
-... (어떻게 써야할까?) 그럼 이제 첫번째 질문을 하도록 하죠.\n
-당신은 어디로 가고 싶으신가요? \n`;
+당신의 인생은 항상 선택의 연속이며 음....
+... (어떻게 써야할까?) 그럼 이제 첫번째 질문을 하도록 하죠.
+당신은 어디로 가고 싶으신가요?`;
 
 const Main = () => {
   const classes = styles();
@@ -69,11 +71,15 @@ const Main = () => {
     openState.current ? controls.start({ y: -210 }) : controls.start({ y: 0 });
   };
 
+
   useEffect(() => {}, []);
 
   return (
     <>
-      <SelectPopCard contents={contents} selectObj={{title:"선택",list:["1. 개인서재","2. 도서관","3. 안내","4. ㅁㅁ"]}}/>
+      <SelectPopCard
+        chapter={FirstChapter}
+        firstScene="open"
+      />
       <div
         style={{
           position: "fixed",

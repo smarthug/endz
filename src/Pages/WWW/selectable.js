@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import Typist from "react-typist";
 import { motion, useAnimation } from "framer-motion";
 import {
@@ -47,10 +47,11 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-const Main = ({ contents, selectObj }) => {
+const Main = ({ chapter, firstScene }) => {
   const classes = styles();
   const controls = useAnimation();
   const openState = useRef(false);
+  const [scene, setScene] = useState(chapter[firstScene]);
   //   const onPanEnd = (event, info) => {
   //     console.log(info.offset.y, info.point.y);
   //     if (info.offset.y > 0) {
@@ -67,33 +68,55 @@ const Main = ({ contents, selectObj }) => {
     openState.current ? controls.start({ y: -160 }) : controls.start({ y: 0 });
   };
 
-  useEffect(() => {}, []);
+  const onTypoEnded = () => {
+    openState.current = true;
+    controls.start({ y: -160 });
+  };
+
+  const onChoiceClick = choiceScene => () => {
+    console.log(chapter[choiceScene])
+    setScene(chapter[choiceScene]);
+  };
 
   return (
     <>
-      <TypoContents contents={contents} />
-      {selectObj && (
-        <div
-          style={{
-            position: "fixed",
-            bottom: 50,
-            height: "50px",
-            width: "100%",
-            overflowY: "visible"
-          }}
-        >
-          <motion.div className={classes.dragableItem} animate={controls}>
-            <MenuItem onClick={openSettings}>{selectObj.title}</MenuItem>
-            <List className={classes.settingsList}>
-              {selectObj.list.map((i, d) => (
-                <ListItem button>
-                  <ListItemText id={d} primary={i} />
-                </ListItem>
-              ))}
-            </List>
-          </motion.div>
-        </div>
+    {console.log("rerender")}
+      {scene && (
+        <TypoContents
+          contents={scene}
+          onTypoEnded={onTypoEnded}
+        />
       )}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 50,
+          height: "50px",
+          width: "100%",
+          overflowY: "visible"
+        }}
+      >
+        <motion.div className={classes.dragableItem} animate={controls}>
+          {scene.choices && (
+            <React.Fragment>
+              <MenuItem onClick={openSettings}>
+                {scene.choices.question}
+              </MenuItem>
+              <List className={classes.settingsList}>
+                {scene.choices.options.map((i, d) => (
+                  <ListItem button>
+                    <ListItemText
+                      id={d}
+                      primary={i[0]}
+                      onClick={onChoiceClick(i[1])}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </React.Fragment>
+          )}
+        </motion.div>
+      </div>
     </>
   );
 };
