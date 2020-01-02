@@ -53,7 +53,7 @@ export const FirstChapter = {
   },
   1: {
     content: `404`,
-    next: "end"
+    next: ["끝을 향해","end"]
   },
   end: {
     content: `ENDz`,

@@ -24,10 +24,12 @@ const Main = ({ contents, onTypoEnded }) => {
     const options = {
       strings: [contents],
       typeSpeed: 50,
-      backSpeed: 50
+      backSpeed: 50,
+      onComplete: onTypoEnded
     };
     // aaa.current.push(contents);
     const typed = new Typed(typoRef.current, options);
+    
     return () => typed.destroy();
   }, [contents]);
 
