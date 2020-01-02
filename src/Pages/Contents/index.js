@@ -57,6 +57,6 @@ export const FirstChapter = {
   },
   end: {
     content: `ENDz`,
-    next: "end"
+    next: ["end","open"]
   }
 };
