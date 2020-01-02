@@ -17,11 +17,16 @@ const theme = {
     }
   },
   typography: {
-    fontFamily: "'Noto Serif KR', serif"
+    fontFamily: "'Noto Serif KR', serif",
+    fontSize: 14
   }
 };
-const themeMain = dark => {
-  theme.palette.type = dark ? "dark" : "light";
+const themeMain = ({ darkTheme, fontFamily, fontSize }) => {
+  theme.palette.type = darkTheme ? "dark" : "light";
+  theme.typography.fontFamily = fontFamily;
+  document.body.style.zoom = fontSize / 100;
+  // theme.typography.htmlFontSize = fontSize + 2;
+
   return createMuiTheme(theme);
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import Typist from "react-typist";
 import { motion, useAnimation } from "framer-motion";
 import {
@@ -59,7 +59,7 @@ const Main = () => {
   const classes = styles();
   const controls = useAnimation();
   const openState = useRef(false);
-  const { darkTheme, set } = useStore();
+  const { darkTheme, font, set } = useStore();
 
   const onPanEnd = (event, info) => {
     console.log(info.offset.y, info.point.y);
@@ -76,9 +76,28 @@ const Main = () => {
     openState.current = !openState.current;
     openState.current ? controls.start({ y: -210 }) : controls.start({ y: 0 });
   };
-const onThemeChanged = () => {
-  set(draft=> {draft.darkTheme =!draft.darkTheme})
-}
+
+  const onThemeChanged = () => {
+    set(draft => {
+      draft.darkTheme = !draft.darkTheme;
+    });
+  };
+  const onFontSizeChanged = e => {
+    set(draft => {
+      draft.font.size = e.target.value;
+    });
+  }
+
+  const fontSizeComponent = useCallback(() => {
+    const arr = [];
+
+    for (let i = 100; i <= 200; i += 10) {
+      arr.push(<MenuItem value={i}>{`${i}%`}</MenuItem>);
+    }
+
+    return arr;
+  }, []);
+
   useEffect(() => {}, []);
 
   return (
@@ -130,7 +149,7 @@ const onThemeChanged = () => {
             <ListItem>
               <ListItemText id="theme" primary="어두운 테마" />
               <ListItemSecondaryAction>
-                <Switch edge="end"  onChange={onThemeChanged} />
+                <Switch edge="end" checked={darkTheme} onChange={onThemeChanged} />
               </ListItemSecondaryAction>
             </ListItem>
             <ListItem>
@@ -144,7 +163,9 @@ const onThemeChanged = () => {
             <ListItem>
               <ListItemText id="font-size" primary="글자크기" />
               <ListItemSecondaryAction>
-                <Typography>14</Typography>
+                <Select value={font.size} onChange={onFontSizeChanged}>
+                  {fontSizeComponent()}
+                </Select>
               </ListItemSecondaryAction>
             </ListItem>
             <ListItem button>

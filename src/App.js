@@ -9,11 +9,17 @@ import BackDiv from "./Theme/backColor";
 import { useStore } from "./Store";
 
 function App() {
-  const { darkTheme } = useStore();
-  useEffect(()=> {
-    console.log(darkTheme)
-  },[darkTheme])
-  const theme = Theme(darkTheme);
+  const { darkTheme, font, set } = useStore();
+
+  useEffect(() => {
+    localStorage.setItem("settings", JSON.stringify({ darkTheme, font }));
+  }, [darkTheme, font.size, font.family]);
+
+  const theme = Theme({
+    darkTheme,
+    fontFamily: font.family,
+    fontSize: font.size
+  });
   return (
     <ThemeProvider theme={theme}>
       <BackDiv />
