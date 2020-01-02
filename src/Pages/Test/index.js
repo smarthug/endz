@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import Swiper from 'swiper'
-import 'swiper/css/swiper.css'
+import './customSwiper.css'
+
+import { data } from '../../global'
 
 // import { Swiper, Slide } from 'react-dynamic-swiper'
 //  import 'react-dynamic-swiper/lib/styles.css'
@@ -60,13 +62,14 @@ export default function Test() {
             // Optional parameters
             direction: 'horizontal',
             loop: false,
+            // navigation: false,
 
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
+            // // If we need pagination
+            /// pagination: {
+            //     el: '.swiper-pagination',
+            // },
 
-            // Navigation arrows
+            // // Navigation arrows
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -81,24 +84,30 @@ export default function Test() {
 
     return (
 
-        <div class="swiper-container">
+        <div className="swiper-container">
 
-            <div class="swiper-wrapper">
+            <div className="swiper-wrapper">
 
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
+                <div className="swiper-slide">Slide 1</div>
+                <div className="swiper-slide">Slide 2</div>
+                <div className="swiper-slide">Slide 3</div>
 
+
+                {data.pages.map((v, i) => {
+                    return (
+                        <div className="swiper-slide">{v.text}</div>
+                    )
+                })}
             </div>
 
-            <div class="swiper-pagination"></div>
+            <div className="swiper-pagination"></div>
 
 
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
 
 
-            <div class="swiper-scrollbar"></div>
+            <div className="swiper-scrollbar"></div>
         </div>
     )
 }
