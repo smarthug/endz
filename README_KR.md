@@ -49,6 +49,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -   https://gall.dcinside.com/mgallery/board/lists?id=tgijjdd
 -   https://gall.dcinside.com/mgallery/board/lists/?id=seoul2033
 -   https://chatie.me/studio
+-   https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B5%AC%ED%85%90%EB%B2%A0%EB%A5%B4%ED%81%AC
 
 
 
