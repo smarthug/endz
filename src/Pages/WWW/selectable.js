@@ -74,19 +74,12 @@ const Main = ({ chapter, firstScene }) => {
   };
 
   const onChoiceClick = choiceScene => () => {
-    console.log(chapter[choiceScene])
     setScene(chapter[choiceScene]);
   };
 
   return (
     <>
-    {console.log("rerender")}
-      {scene && (
-        <TypoContents
-          contents={scene}
-          onTypoEnded={onTypoEnded}
-        />
-      )}
+      <TypoContents contents={scene.content} onTypoEnded={onTypoEnded} />
       <div
         style={{
           position: "fixed",

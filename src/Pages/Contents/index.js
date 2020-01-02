@@ -17,15 +17,39 @@ export const FirstChapter = {
   },
   profile: {
     content: `당신의 신분을 증명`,
-    next: "end"
+    choices: {
+      question: "선택",
+      options: [
+        ["개인서재", "profile"],
+        ["도서관", "lib"],
+        ["안내", "info"],
+        ["음....", 1]
+      ]
+    }
   },
   lib: {
     content: `도서관`,
-    next: "end"
+    choices: {
+      question: "선택",
+      options: [
+        ["개인서재", "profile"],
+        ["도서관", "lib"],
+        ["안내", "info"],
+        ["음....", 1]
+      ]
+    }
   },
   info: {
     content: `안내`,
-    next: "end"
+    choices: {
+      question: "선택",
+      options: [
+        ["개인서재", "profile"],
+        ["도서관", "lib"],
+        ["안내", "info"],
+        ["음....", 1]
+      ]
+    }
   },
   1: {
     content: `404`,

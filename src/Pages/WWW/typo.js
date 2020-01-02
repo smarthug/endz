@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import Typist from "react-typist";
-import "react-typist/dist/Typist.css";
+import React, { useEffect, useRef } from "react";
+// import Typist from "react-typist";
+// import "react-typist/dist/Typist.css";
+import Typed from "typed.js";
 import { Typography, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: '30px 8px 0px 8px'
+    padding: "30px 8px 0px 8px"
   },
   typoArea: {
     wordBreak: "break-all",
@@ -15,15 +16,26 @@ const useStyles = makeStyles(theme => ({
 }));
 const Main = ({ contents, onTypoEnded }) => {
   const classes = useStyles();
-  useEffect(()=> {
-    console.log(contents)
-  },[])
+  const typoRef = useRef(null);
+  // const aaa = useRef([]);
+
+  useEffect(() => {
+    console.log("aaaaa");
+    const options = {
+      strings: [contents],
+      typeSpeed: 50,
+      backSpeed: 50
+    };
+    // aaa.current.push(contents);
+    const typed = new Typed(typoRef.current, options);
+    return () => typed.destroy();
+  }, [contents]);
+
   return (
     <div className={classes.root}>
       {/* <Typography variant="h4">[endZ]</Typography> */}
-      <Typist onTypingDone={onTypoEnded}>
-        <Typography className={classes.typoArea}>{contents.content}</Typography>
-      </Typist>
+      <Typography ref={typoRef} className={classes.typoArea} />
+      {/* <Typography className={classes.typoArea}>{contents}</Typography> */}
     </div>
   );
 };
