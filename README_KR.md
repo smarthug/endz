@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <h1>  EndZ - 최소한, 하지만 무한한 읽기 경험</h1>
 
 [Demo](https://build-dv43vhph1.now.sh/) - 모바일에서 볼것
+[운수 좋은 날 2020](https://build.chunghosuk.now.sh)
 
 ## Purpose
 이 프로젝트의 목표는 웹에서의 독서 경험을 극대화하는 것입니다. 웹을 통해 텍스트를 읽을 수 있지만 웹 기능을 완전히 사용하지는 않습니다. 웹의 큰 발전 덕분에 웹은 거의 모든 것을 할 수 있습니다. (예 : 3D 그래픽, 딥 러닝) 이러한 훌륭한 기능을 사용하여 독서 경험을 극대화해야합니다.
