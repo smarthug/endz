@@ -6,7 +6,8 @@ import { Typography, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: "30px 8px 0px 8px"
+    padding: "30px 8px 0px 8px",
+    color: theme.palette.text.primary
   },
   typoArea: {
     wordBreak: "break-all",
@@ -29,7 +30,7 @@ const Main = ({ contents, onTypoEnded }) => {
     };
     // aaa.current.push(contents);
     const typed = new Typed(typoRef.current, options);
-    
+
     return () => typed.destroy();
   }, [contents]);
 

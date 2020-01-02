@@ -1,7 +1,8 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-
-const theme = createMuiTheme({
+import { useStore } from "../Store";
+const theme = {
   palette: {
+    type: "light",
     primary: {
       light: "#7986cb",
       main: "#3f51b5",
@@ -18,6 +19,12 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: "'Noto Serif KR', serif"
   }
-});
+};
+const themeMain = dark => {
+  theme.palette.type = dark ? "dark" : "light";
+  return createMuiTheme(theme);
+};
 
-export default theme;
+export default themeMain;
+
+// export * from './backColor';

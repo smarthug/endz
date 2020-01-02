@@ -19,7 +19,9 @@ import ArrowForwardIos from "@material-ui/icons/ArrowForwardIosOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import SelectPopCard from "./selectable";
 
-import { FirstChapter } from "../Contents"
+import { FirstChapter } from "../Contents";
+
+import { useStore } from "../../Store";
 
 const styles = makeStyles(theme => ({
   dragableItem: {
@@ -33,6 +35,8 @@ const styles = makeStyles(theme => ({
     right: 0,
     backdropFilter: "blur(10px)",
     WebkitBackdropFilter: "blur(10px)",
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
     boxShadow:
       "0px -3px 5px -1px rgba(0,0,0,0.2),0px -5px 8px 0px rgba(0,0,0,0.14),0px -1px 14px 0px rgba(0,0,0,0.12)"
   },
@@ -55,6 +59,8 @@ const Main = () => {
   const classes = styles();
   const controls = useAnimation();
   const openState = useRef(false);
+  const { darkTheme, set } = useStore();
+
   const onPanEnd = (event, info) => {
     console.log(info.offset.y, info.point.y);
     if (info.offset.y > 0) {
@@ -70,16 +76,14 @@ const Main = () => {
     openState.current = !openState.current;
     openState.current ? controls.start({ y: -210 }) : controls.start({ y: 0 });
   };
-
-
+const onThemeChanged = () => {
+  set(draft=> {draft.darkTheme =!draft.darkTheme})
+}
   useEffect(() => {}, []);
 
   return (
     <>
-      <SelectPopCard
-        chapter={FirstChapter}
-        firstScene="open"
-      />
+      <SelectPopCard chapter={FirstChapter} firstScene="open" />
       <div
         style={{
           position: "fixed",
@@ -126,7 +130,7 @@ const Main = () => {
             <ListItem>
               <ListItemText id="theme" primary="어두운 테마" />
               <ListItemSecondaryAction>
-                <Switch edge="end" />
+                <Switch edge="end"  onChange={onThemeChanged} />
               </ListItemSecondaryAction>
             </ListItem>
             <ListItem>
