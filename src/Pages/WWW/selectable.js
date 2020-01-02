@@ -18,7 +18,7 @@ const styles = makeStyles(theme => ({
     right: 0,
     backdropFilter: "blur(10px)",
     WebkitBackdropFilter: "blur(10px)",
-    // border: "solid #d1d1d1",
+    borderTop: "solid #d1d1d1",
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.primary
   },
