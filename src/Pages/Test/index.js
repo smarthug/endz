@@ -59,7 +59,7 @@ export default function Test() {
 
 
                 {data.pages.map((v, i) => {
-                    var ReactComponent = Plugins[data.pages[0].type]
+                    var ReactComponent = Plugins[data.pages[i].type]
                     console.log(ReactComponent)
                     return (
                         <div className="swiper-slide"><ReactComponent v={v} /></div>
