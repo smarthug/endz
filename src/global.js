@@ -200,6 +200,8 @@ export const data = {
 
 export const [useStore] = create(set => ({
     count: { a: { b: 999 } },
+    fontSize : "1rem",
+    lineHeight: "2rem",
     //   increase: () => set(state => ({ count: state.count + 1 })),
     set: (fn) => set(produce(fn))
 }))

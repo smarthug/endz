@@ -16,7 +16,7 @@ import { Plugins } from '../../Plugins'
 
 export default function Test() {
 
-   
+
 
     useEffect(() => {
         var mySwiper = new Swiper('.swiper-container', {
@@ -28,13 +28,24 @@ export default function Test() {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            // pagination: {
+            //     el: '.swiper-pagination',
+            //     type: 'fraction',
+            //   },
 
             // And if we need scrollbar
             scrollbar: {
                 el: '.swiper-scrollbar',
             },
 
-            
+            virtual: {
+                slides: data.pages
+            },
+
+            slidesPerView: 'auto',
+            centeredSlides: true,
+
+
         })
     }, [])
 
@@ -51,17 +62,17 @@ export default function Test() {
                     var ReactComponent = Plugins[data.pages[0].type]
                     console.log(ReactComponent)
                     return (
-                    <div className="swiper-slide"><ReactComponent v={v}/></div>
+                        <div className="swiper-slide"><ReactComponent v={v} /></div>
                     )
                 })}
             </div>
 
-            <div className="swiper-pagination"></div>
 
 
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>
 
+            <div className="swiper-pagination"></div>
 
             <div className="swiper-scrollbar"></div>
         </div>
