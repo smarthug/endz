@@ -25,12 +25,16 @@ const useStyles = makeStyles(theme => ({
 export default function RootsPage(props) {
     const classes = useStyles()
     const set = useStore(state => state.set)
+    const pages = useStore(state => state.pages)
+    const origin = useStore(state => state.origin)
     const rootChange = useStore(state => state.rootChange)
 
     const rootAdder = (result) => {
-        set( state => {state.pages = [ ...state.pages  , ...result]})
+        // 이렇게 할게 아니라 ... 하나의 진짜와 사본에 다가 해야 겠다
+        var tmp = [...origin , ...result]
+        set( state => {state.pages = tmp})
         mySwiper.destroy();
-        rootChange("rootA")
+        rootChange("rootOn")
         //mySwiper.slideTo(12)
         //set( state => {state.pages = [  ...result]})
 
