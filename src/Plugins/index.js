@@ -3,6 +3,7 @@ import DivergencePage  from './divergence'
 import TextPage from './text'
 import ThreePage from './threeScene'
 import TitlePage from './title'
+import RootsPage from './roots'
 
 
 export  const Plugins = {
@@ -10,5 +11,6 @@ export  const Plugins = {
     text: TextPage,
     img: ImagePage,
     divergence: DivergencePage,
-    three: ThreePage
+    three: ThreePage,
+    roots: RootsPage,
 }

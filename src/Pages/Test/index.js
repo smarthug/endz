@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Swiper from 'swiper'
 import './customSwiper.css'
 
-import { data } from '../../global'
+import { data, useStore } from '../../global'
 
 import { Plugins } from '../../Plugins'
 
@@ -10,16 +10,20 @@ import { Plugins } from '../../Plugins'
 
 
 
+export var mySwiper = null;
+
 
 
 
 
 export default function Test() {
+    const pages = useStore(state => state.pages)
+    const root = useStore(state => state.root)
 
 
 
     useEffect(() => {
-        var mySwiper = new Swiper('.swiper-container', {
+        mySwiper = new Swiper('.swiper-container', {
             // Optional parameters
             direction: 'horizontal',
             loop: false,
@@ -33,13 +37,13 @@ export default function Test() {
             //     type: 'fraction',
             //   },
 
-            // And if we need scrollbar
+            //And if we need scrollbar
             scrollbar: {
                 el: '.swiper-scrollbar',
             },
 
             virtual: {
-                slides: data.pages
+                slides: pages
             },
 
             slidesPerView: 'auto',
@@ -47,7 +51,14 @@ export default function Test() {
 
 
         })
-    }, [])
+
+        /// bad
+        if(root !== "main"){
+            mySwiper.slideTo(13,0)
+        }
+        ///
+
+    }, [pages])
 
     return (
 
@@ -58,11 +69,11 @@ export default function Test() {
 
 
 
-                {data.pages.map((v, i) => {
-                    var ReactComponent = Plugins[data.pages[i].type]
+                {pages.map((v, i) => {
+                    var ReactComponent = Plugins[pages[i].type]
                     console.log(ReactComponent)
                     return (
-                        <div className="swiper-slide"><ReactComponent v={v} /></div>
+                        <div key={i} className="swiper-slide"><ReactComponent v={v} /></div>
                     )
                 })}
             </div>
