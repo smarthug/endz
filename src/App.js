@@ -3,6 +3,7 @@ import Theme from "./Theme";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Main from "./Pages/Main";
+import Test from "./Pages/Test"
 import TestLP from "./Pages/WWW";
 import { ThemeProvider, makeStyles } from "@material-ui/core";
 import BackDiv from "./Theme/backColor";
@@ -24,7 +25,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BackDiv />
       <Router>
-        <Route path="/" exact component={Main} />
+        <Route path="/" exact component={Test} />
         <Route path="/test" exact component={TestLP} />
       </Router>
     </ThemeProvider>

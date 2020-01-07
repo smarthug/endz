@@ -10,4 +10,8 @@ export default function ImagePage(options){
      // 여기까지 함수로 빼고 b 를 반환하게 하고 ... 그후에 어펜드 > ㄱ
      options.sampleRef.current.appendChild(b)
 
+     return () => {
+          console.log(" script finished call back!")
+     }
+
 }

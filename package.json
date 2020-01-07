@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.8.0",
+    "@material-ui/core": "^4.8.2",
     "@material-ui/icons": "^4.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -15,7 +15,10 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-typist": "^2.0.5",
+    "react-dynamic-swiper": "^2.0.2",
     "react-window": "^1.8.5",
+    "swiper": "^5.2.1",
+    "three": "^0.112.1",
     "typed.js": "^2.0.11",
     "zustand": "^2.2.1"
   },

@@ -1,21 +1,21 @@
-[한국어](README_KR.md) \
+[English](README.md) \
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<h1>  EndZ - Minimal , but infinite reading experience </h1>
+<h1>  EndZ - 최소한, 하지만 무한한 읽기 경험</h1>
 
-[Demo](https://build-dv43vhph1.now.sh/) - for mobile
+[Demo](https://build-dv43vhph1.now.sh/) - 모바일에서 볼것
 [운수 좋은 날 2020](https://build.chunghosuk.now.sh)
 
 ## Purpose
-The goal of this project is to maximaze reading experience in web. We can read text through web, but we don't fully use web's capability.  Thanks to great development on web,  web can do almost everything. (ex: 3D graphics, deep learning) We should use these great features to maximaze our reading exprience.
-This is Open Source so users can make their desired feature themselves. (where Infinite comes from) And those features will be easily on&off like Chrome extensions. (where Minimal comes from)
+이 프로젝트의 목표는 웹에서의 독서 경험을 극대화하는 것입니다. 웹을 통해 텍스트를 읽을 수 있지만 웹 기능을 완전히 사용하지는 않습니다. 웹의 큰 발전 덕분에 웹은 거의 모든 것을 할 수 있습니다. (예 : 3D 그래픽, 딥 러닝) 이러한 훌륭한 기능을 사용하여 독서 경험을 극대화해야합니다.
+이것은 오픈 소스이므로 사용자가 원하는 기능을 직접 만들 수 있습니다. (무한한) Chrome 확장 프로그램과 같이 쉽게 탈부착할 수 있습니다. (최소한)
 
 
 
 ## Project Design
-- Each page needs its own plugin. (ex: img,divergence ) , plugins will be made by user. users gonna write single js file with single function. 
-- Settings will be global store with Zustand and Immer
-- Books will be shown as JSON
+- 각 페이지에는 자체 플러그인이 필요합니다. (예 : img, 분기) 플러그인은 사용자가 작성합니다. 사용자는 하나의 함수를 가진 하나의 js 파일을 작성합니다.
+- Zustand 및 Immer를 통해 설정 전역 관리
+- 책의 내용은 JSON으로 표시됩니다
 
 
 ## Data Schema
@@ -70,7 +70,3 @@ npm start
 - Novel - on priority
 - Novel Platform - second priority
 - Novel editor - last , going to use VSCode for now
-
-
-
-
