@@ -3,8 +3,46 @@ import * as THREE from 'three'
 //import ObjLoader from 'three/examples/js/loaders/OBJLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 
 var scene, camera, renderer, controls
+
+function GetLoaderType(model){
+
+    var split = model.split(',');
+    var loader;
+
+    for(var i in split){
+        var fileExtends = split[i].split('.')[1];
+        switch(fileExtends){
+            case "obj":
+                loader = new OBJLoader();
+                break;
+
+            case "fbx":
+                loader = new FBXLoader();
+                break;
+        }
+
+        loader.load(
+            // resource URL
+            split[i],
+            // called when resource is loaded
+            function (object) {
+                object.rotation.set(-Math.PI / 2, 0, 0)
+                scene.add(object);
+            },
+            // called when loading is in progresses
+            function (xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            // called when loading has errors
+            function (error) {
+                console.log('An error happened');
+            }
+        )
+    }
+}
 
 export default function ThreePage(props) {
     const threeRef = useRef()
@@ -34,31 +72,7 @@ export default function ThreePage(props) {
         scene.add(directionalLight);
         controls.update();
         // instantiate a loader
-        var loader = new OBJLoader();
-
-        // load a resource
-        loader.load(
-            // resource URL
-            props.v.model,
-            // called when resource is loaded
-            function (object) {
-                object.rotation.set(-Math.PI / 2, 0, 0)
-                scene.add(object);
-
-            },
-            // called when loading is in progresses
-            function (xhr) {
-
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
-            },
-            // called when loading has errors
-            function (error) {
-
-                console.log('An error happened');
-
-            }
-        );
+        var loader = GetLoaderType(props.v.model)
 
         // camera.position.z = 5;
         animate();
