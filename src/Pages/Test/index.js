@@ -49,6 +49,7 @@ export default function Test() {
 
         <div>
             <VirtualizeSwipeableViews
+            enableMouseEvents
                 index={index}
                 onChangeIndex={handleChangeIndex}
                 slideRenderer={slideRenderer}
