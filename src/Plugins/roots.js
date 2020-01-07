@@ -2,8 +2,8 @@ import React from 'react'
 import { data, useStore } from '../global'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import { mySwiper , root} from '../Pages/Test/index'
-import { Plugins } from './index'
+// import { mySwiper , root} from '../Pages/Test/index'
+
 
 
 
@@ -27,14 +27,16 @@ export default function RootsPage(props) {
     const set = useStore(state => state.set)
     const pages = useStore(state => state.pages)
     const origin = useStore(state => state.origin)
-    const rootChange = useStore(state => state.rootChange)
+    // const rootChange = useStore(state => state.rootChange)
 
     const rootAdder = (result) => {
         // 이렇게 할게 아니라 ... 하나의 진짜와 사본에 다가 해야 겠다
-        var tmp = [...origin , ...result]
-        set( state => {state.pages = tmp})
-        mySwiper.destroy();
-        rootChange("rootOn")
+        //var tmp = [...origin , ...result]
+        data.pages = [...origin , ...result]
+        //set(state => state.pages=data.pages)
+        //set( state => {state.pages = tmp})
+        // mySwiper.destroy();
+        // rootChange("rootOn")
         //mySwiper.slideTo(12)
         //set( state => {state.pages = [  ...result]})
 
