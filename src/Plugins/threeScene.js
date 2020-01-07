@@ -7,14 +7,15 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 
 var scene, camera, renderer, controls
 
-function GetLoaderType(model){
-
+// modeling files loader
+function LoadMultipleModeling(model){
     var split = model.split(',');
-    var loader;
 
     for(var i in split){
-        var fileExtends = split[i].split('.')[1];
-        switch(fileExtends){
+        var fileName = split[i];
+        var fileExtendsName = split[i].split('.')[1];
+        var loader;
+        switch(fileExtendsName){
             case "obj":
                 loader = new OBJLoader();
                 break;
@@ -26,7 +27,7 @@ function GetLoaderType(model){
 
         loader.load(
             // resource URL
-            split[i],
+            fileName,
             // called when resource is loaded
             function (object) {
                 object.rotation.set(-Math.PI / 2, 0, 0)
@@ -72,7 +73,7 @@ export default function ThreePage(props) {
         scene.add(directionalLight);
         controls.update();
         // instantiate a loader
-        var loader = GetLoaderType(props.v.model)
+        LoadMultipleModeling(props.v.model)
 
         // camera.position.z = 5;
         animate();
