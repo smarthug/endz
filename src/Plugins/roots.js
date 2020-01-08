@@ -1,7 +1,8 @@
 import React from 'react'
-import { data, useStore } from '../global'
+import { useStore,diversity , history, useStoryStore } from '../global'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
+
 // import { mySwiper , root} from '../Pages/Test/index'
 
 
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column"
 
     },
-    button : {
+    button: {
         margin: 50
     }
 }))
@@ -24,42 +25,35 @@ const useStyles = makeStyles(theme => ({
 
 export default function RootsPage(props) {
     const classes = useStyles()
-    const set = useStore(state => state.set)
-    const pages = useStore(state => state.pages)
-    const origin = useStore(state => state.origin)
-    // const rootChange = useStore(state => state.rootChange)
+    const story = useStoryStore(state => state.story)
+    const setStory = useStoryStore(state => state.setStory)
+    const setIndex = useStoryStore(state => state.setIndex)
+    const setBookLength = useStoryStore(state => state.setBookLength)
+   
+ 
 
-    const rootAdder = (result) => {
-        // 이렇게 할게 아니라 ... 하나의 진짜와 사본에 다가 해야 겠다
-        //var tmp = [...origin , ...result]
-        data.pages = [...origin , ...result]
-        //set(state => state.pages=data.pages)
-        //set( state => {state.pages = tmp})
-        // mySwiper.destroy();
-        // rootChange("rootOn")
-        //mySwiper.slideTo(12)
-        //set( state => {state.pages = [  ...result]})
+    const rootAdder = (obj) => {
 
-        // result.map((v, i) => {
-        //     var ReactComponent = Plugins[pages[i].type]
-        //     console.log(ReactComponent)
-        //     return (
-        //         <div key={i} className="swiper-slide"><ReactComponent v={v} /></div>
-        //     )
-        // })
+        var tmp = [];
 
-        // mySwiper.appendSlide([
-        //     '<div class="swiper-slide">Slide  </div>',
-        //     '<div class="swiper-slide">Slide </div>'
-        //     ]);
+        history.set(obj.name, obj.root);
 
-            // mySwiper.appendSlide(result.map((v, i) => {
-            //     var ReactComponent = Plugins[v.type]
-            //     console.log(ReactComponent)
-            //     return (
-            //         <div key={i} className="swiper-slide"><ReactComponent v={v} /></div>
-            //     )
-            // }));
+        // to remove future stuff
+        var index = [...history.keys()].findIndex((element) => element === obj.name)
+        var slicedArr = [...history.values()].slice(0, index + 1)
+
+        slicedArr.map((v, i) => {
+            tmp.push(...v);
+        })
+
+        var length = tmp.length - obj.root.length;
+        //var length = slicedArr.length;
+
+        setStory(tmp)
+        //story = tmp;
+        setBookLength(tmp.length);
+        setIndex(length);
+
     }
 
 
@@ -70,7 +64,7 @@ export default function RootsPage(props) {
                 return (
                     <div>
 
-                        <Button className={classes.button} variant="outlined" color="primary" onClick={() => {rootAdder(v.result)}} >{v.text}</Button>
+                        <Button className={classes.button} variant="outlined" color="primary" onClick={() => { rootAdder(v.obj) }} >{v.text}</Button>
                     </div>
                 )
             })}

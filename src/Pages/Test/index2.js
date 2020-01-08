@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swiper from 'swiper'
 import './customSwiper.css'
 
@@ -10,87 +10,69 @@ import SwipeableViews from 'react-swipeable-views';
 import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
 
+export var mySwiper
+
+const VirtualizeSwipeableViews = bindKeyboard(virtualize(SwipeableViews));
+
+function slideRenderer(params) {
+    
+    const { index, key } = params;
+    console.log(index)
+    // index 가 길이를 안넘게 .... 
+    var ReactComponent
+    if(index>=data.pages.length){
+        ReactComponent = Plugins[data.pages[1].type]
+        var v = data.pages[1]
+    }else{
+
+        ReactComponent = Plugins[data.pages[index].type]
+        var v = data.pages[index]
+    }
+
+
+    return (
+        <div key={key} ><ReactComponent v={v} /></div>
+    )
+}
 
 
 
 
-export var mySwiper = null;
 
 
 
 
 
 export default function Test() {
+    //const [index, setIndex] = useState(0)
+    const index = useStore(state => state.index)
+    const setIndex = useStore(state => state.setIndex)
+
     const pages = useStore(state => state.pages)
-    const root = useStore(state => state.root)
-
-
 
     useEffect(() => {
-        mySwiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            direction: 'horizontal',
-            loop: false,
 
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            // pagination: {
-            //     el: '.swiper-pagination',
-            //     type: 'fraction',
-            //   },
+    }, [])
 
-            //And if we need scrollbar
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-
-            virtual: {
-                slides: pages
-            },
-
-            slidesPerView: 'auto',
-            centeredSlides: true,
-
-
-        })
-
-        /// bad
-        if(root !== "main"){
-            mySwiper.slideTo(13,0)
-        }
-        ///
-
-    }, [pages])
+    const handleChangeIndex = index => {
+        // 여기서 마지막 페이지 이상은 안넘게 할 수 있겠군 ... 
+        setIndex(index)
+    };
 
     return (
 
-        <div className="swiper-container">
-
-            <div className="swiper-wrapper">
-
-
-
-
-                {pages.map((v, i) => {
-                    var ReactComponent = Plugins[pages[i].type]
-                    console.log(ReactComponent)
-                    return (
-                        <div key={i} className="swiper-slide"><ReactComponent v={v} /></div>
-                    )
-                })}
-            </div>
-
-
-
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
-
-            <div className="swiper-pagination"></div>
-
-            <div className="swiper-scrollbar"></div>
+        <div>
+            <button>Setting</button>
+            <VirtualizeSwipeableViews
+                index={index}
+                onChangeIndex={handleChangeIndex}
+                slideRenderer={slideRenderer}
+                slideCount={999}
+                overscanSlideBefore={1}
+            />
         </div>
     )
 }
 
+ // slideCount={data.pages.length}
+ // 이걸 풀어야하나 ?? 
