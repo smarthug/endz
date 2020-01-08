@@ -13,7 +13,7 @@ var diversity = {
   rootA: ["A5", "A6", "A7", "A8"],
   rootB: ["B5", "B6", "B7", "B8"],
 
-  // 두번쨰 분기
+  // 두번쨰 분기w
   rootC: ["C9", "C10", "C11", "C12"],
   rootD: ["D9", "D10", "D11", "D12"]
 };
@@ -68,18 +68,24 @@ export default function Test() {
     
   };
 
-  const rootAdderB = () => {
+  const rootAdder = (obj) => {
     var tmp = [];
-    history.delete("second");
-    history.set("first", diversity.rootB);
+   
+    history.set(obj.name, obj.root);
+   
+    
+    var index = [...history.keys()].findIndex((element)=>element===obj.name)
+    
+    var slicedArr = [...history.values()].slice(0, index+1)
+    
+    slicedArr.map((v,i) => {
+      tmp.push(...v);
+    })
 
-    for (var [key, value] of history) {
-      tmp.push(...value);
-    }
+    var length = tmp.length -  obj.root.length;
+    //var length = slicedArr.length;
 
-    var length = tmp.length-  diversity.rootB.length;
-
-    //tmp.push(...diversity.rootB);
+     
     story = tmp;
     setBookLength(story.length);
     setIndex(length);
@@ -123,10 +129,10 @@ export default function Test() {
   return (
     <div>
       <button>Setting</button>
-      <button onClick={rootAdderA}>A</button>
-      <button onClick={rootAdderB}>B</button>
-      <button onClick={rootAdderC}>C</button>
-      <button onClick={rootAdderD}>D</button>
+      <button onClick={() => {rootAdder({name:"first",root:diversity.rootA})}}>A</button>
+      <button onClick={() => {rootAdder({name:"first",root:diversity.rootB})}}>B</button>
+      <button onClick={() => {rootAdder({name:"second",root:diversity.rootC})}}>C</button>
+      <button onClick={() => {rootAdder({name:"second",root:diversity.rootD})}}>D</button>
       <VirtualizeSwipeableViews
         index={index}
         onChangeIndex={handleChangeIndex}
