@@ -16,6 +16,7 @@ This is Open Source so users can make their desired feature themselves. (where I
 - Each page needs its own plugin. (ex: img,divergence ) , plugins will be made by user. users gonna write single js file with single function. 
 - Settings will be global store with Zustand and Immer
 - Books will be shown as JSON
+ - [framework demo](https://codesandbox.io/s/modest-frost-f10g3?fontsize=14&hidenavigation=1&theme=dark)
 
 
 ## Data Schema
