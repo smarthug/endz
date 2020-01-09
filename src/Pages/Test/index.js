@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import SwipeableViews from "react-swipeable-views";
-import { virtualize } from "react-swipeable-views-utils";
+import { virtualize , bindKeyboard  } from "react-swipeable-views-utils";
 
-import { useStore, diversity, useStoryStore, history, storyAPI } from "../../global"
+import { useStore, diversity, useStoryStore, history, storyAPI, rootAdder } from "../../global"
 
 import { Plugins } from "../../Plugins"
 
@@ -18,24 +18,37 @@ import { Plugins } from "../../Plugins"
 
 history.set("prologue", diversity.prologue);
 
-const VirtualizeSwipeableViews = virtualize(SwipeableViews);
+const VirtualizeSwipeableViews = bindKeyboard(virtualize(SwipeableViews));
 
 function SlideRenderer(params) {
 
     const story = storyAPI.getState().story
     const { index, key } = params;
 
-    var PageComponent = Plugins[story[index].type]
+    
+    var PageComponent 
+    var tmp
+    if(index>=storyAPI.getState().bookLength){
+        PageComponent = Plugins[story[0].type]
+        tmp = story[0]
+    } else {
+        console.log(index)
+        // 분기만 따로 관리하는게 편할려나 ... 
+        PageComponent = Plugins[story[index].type]
+        tmp = story[index]
+    }
 
     return (
-        <div key={key} style={{ height: "100vh" }}>
-            <PageComponent v={story[index]} />
+        <div key={key} >
+            <PageComponent v={tmp} />
         </div>
     );
 }
+//style={{ height: "100vh" }}
 
 export default function Test() {
     //const [index, setIndex] = useState(0)
+    const story = useStoryStore(state => state.story)
     const index = useStoryStore(state => state.index)
     const setIndex = useStoryStore(state => state.setIndex)
     const bookLength = useStoryStore(state => state.bookLength)
@@ -55,12 +68,24 @@ export default function Test() {
     return (
         <div>
            
+            {/* <button onClick={()=>rootAdder(story[index].choices[0].obj)}>A</button>
+            <button onClick={()=>rootAdder(story[index].choices[1].obj)}>B</button> */}
+
+            {
+               story[index].choices  && story[index].choices.map((v,i) => {
+
+                    return(
+                        <button onClick={()=>rootAdder(v.obj)}>{v.text}</button>
+                    )
+                })
+            }
 
             <VirtualizeSwipeableViews
                 index={index}
                 onChangeIndex={handleChangeIndex}
                 slideRenderer={SlideRenderer}
                 slideCount={bookLength}
+                resistance
             
             />
         </div>

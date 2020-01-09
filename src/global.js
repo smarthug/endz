@@ -295,7 +295,7 @@ export const prologue = [
         `
     },
     {
-        type: "roots", choices: [{ text: "술집에 들어간다.", obj: { name: "first", root: rootA } }, { text: "설렁탕을 사서 집으로 돌아간다.", obj: { name: "first", root: rootB } }]
+        type: "roots", name:"first" ,choices: [{ text: "술집에 들어간다.", obj: { name: "first", root: rootA, text: "술집에 들어간다." } }, { text: "설렁탕을 사서 집으로 돌아간다.", obj: { name: "first", root: rootB,  text: "설렁탕을 사서 집으로 돌아간다." } }]
     },
 
 
@@ -331,6 +331,31 @@ export const [useStoryStore, storyAPI] = create(set => ({
     setBookLength: index => set({ bookLength: index }),
     set: (fn) => set(produce(fn))
 }))
+
+
+export const rootAdder = (obj) => {
+
+    var tmp = [];
+
+    history.set(obj.name, obj.root);
+
+    // to remove future stuff
+    var index = [...history.keys()].findIndex((element) => element === obj.name)
+    var slicedArr = [...history.values()].slice(0, index + 1)
+
+    slicedArr.map((v, i) => {
+        tmp.push(...v);
+    })
+
+    var length = tmp.length - obj.root.length;
+    //var length = slicedArr.length;
+
+    storyAPI.getState().setStory(tmp)
+
+    storyAPI.getState().setBookLength(tmp.length);
+    storyAPI.getState().setIndex(length);
+
+}
 
 
 export const [useStore] = create(set => ({
