@@ -8,7 +8,7 @@ import produce from 'immer'
 
 
 export const rootA = [{
-    page: 10, type: "text", text: `선술집은 훈훈하고 뜨뜻하였다. 추어탕을 끓이는 솥뚜껑을 열 적마다 뭉게뭉게 떠오르는 흰 김, 석쇠에서 뻐지짓뻐지짓 구워지는 너비아니 구이며 제육이며 간이며 콩팥이며 북어며 빈대떡……이 너저분하게 늘어놓인 안주 탁자에 김 첨지는 갑자기 속이 쓰려서 견딜 수 없었다. 마음대로 할 양이면 거기 있는 모든 먹음 먹이를 모조리 깡그리 집어삼켜도 시원치 않았다. 하되 배고픈 이는 위선 분량 많은 빈대떡 두 개를 쪼이기도 하고 추어탕을 한 그릇 청하였다.
+    page: 10, type: "text", helper:"술집에 들어간다."  ,text: `선술집은 훈훈하고 뜨뜻하였다. 추어탕을 끓이는 솥뚜껑을 열 적마다 뭉게뭉게 떠오르는 흰 김, 석쇠에서 뻐지짓뻐지짓 구워지는 너비아니 구이며 제육이며 간이며 콩팥이며 북어며 빈대떡……이 너저분하게 늘어놓인 안주 탁자에 김 첨지는 갑자기 속이 쓰려서 견딜 수 없었다. 마음대로 할 양이면 거기 있는 모든 먹음 먹이를 모조리 깡그리 집어삼켜도 시원치 않았다. 하되 배고픈 이는 위선 분량 많은 빈대떡 두 개를 쪼이기도 하고 추어탕을 한 그릇 청하였다.
     주린 창자는 음식맛을 보더니 더욱더욱 비어지며 자꾸자꾸 들이라들이라 하였다. 순식간에 두부와 미꾸리 든 국 한 그릇을 그냥 물같이 들이키고 말았다. 세째 그릇을 받아들었을 제 데우던 막걸이 곱배기 두 잔이 더웠다. 치삼이와 같이 마시자 원원히 비었던 속이라 찌르르하고 창자에 퍼지며 얼굴이 화끈하였다. 눌러 곱배기 한 잔을 또 마셨다.
 
 김 첨지의 눈은 벌써 개개 풀리기 시작하였다. 석쇠에 얹힌 떡 두 개를 숭덩숭덩 썰어서 볼을 불룩거리며 또 곱배기 두 잔을 부어라 하였다.
@@ -107,7 +107,7 @@ export const rootA = [{
 
 export const rootB = [
     {
-        page: 13, type: "text", text: `“미안허이 , 마누라가 아파서 일짝 들어가봐야것어”
+        page: 13, type: "text", helper:"설렁탕을 사서 집으로 돌아간다." ,text: `“미안허이 , 마누라가 아파서 일짝 들어가봐야것어”
 
         “그러시게 , 다음에 한잔 하자고”
         
@@ -326,6 +326,7 @@ export const [useStoryStore, storyAPI] = create(set => ({
     story: [...diversity.prologue],
     setStory: (story) => set({ story: story }),
     index: 0,
+    nextPage: () => set(state => ({ index: state.index + 1 })),
     setIndex: index => set({ index: index }),
     bookLength: diversity.prologue.length,
     setBookLength: index => set({ bookLength: index }),
