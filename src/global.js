@@ -205,7 +205,7 @@ export const prologue = [
 
     {
         page: 0,
-        type: "typeAnimation",
+        type: "text",
 
         text: `침하게 흐린 품이 눈이 올 듯하더니 눈은 아니 오고 얼다가 만 비가 추적추적 내리었다.
 

@@ -2,6 +2,8 @@ import React from 'react'
 import { data , useStore } from '../global'
 import { makeStyles } from '@material-ui/core/styles'
 
+import Nextpage from '../Components/nextPage'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,6 +28,7 @@ export default function TextPage(props) {
    return (
      
          <div className={classes.swiperSlide} style={{fontSize, lineHeight}}>
+            <Nextpage/>
            {props.v.text}
          </div>
     

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import SwipeableViews from "react-swipeable-views";
-import { virtualize, bindKeyboard } from "react-swipeable-views-utils";
+import {   virtualize,bindKeyboard } from "react-swipeable-views-utils";
+//import {   bindKeyboard } from "react-swipeable-views-utils";
+//import virtualize from './virtualize'
 
 import { useStore, diversity, useStoryStore, history, storyAPI, rootAdder, refList } from "../../global"
 
@@ -55,7 +57,7 @@ export default function Test() {
                 story[index].choices && story[index].choices.map((v, i) => {
 
                     return (
-                        <button onClick={() => rootAdder(v.obj)}>{v.text}</button>
+                        <button key={i} onClick={() => rootAdder(v.obj)}>{v.text}</button>
                     )
                 })
             }
@@ -66,6 +68,7 @@ export default function Test() {
                 onChangeIndex={handleChangeIndex}
                 slideRenderer={SlideRenderer}
                 slideCount={bookLength}
+               
             />
         </div>
     );
