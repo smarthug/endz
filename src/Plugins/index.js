@@ -4,6 +4,7 @@ import TextPage from './text'
 import ThreePage from './threeScene'
 import TitlePage from './title'
 import RootsPage from './roots'
+import TypeAnimationPage from './typeAnimation'
 
 
 export  const Plugins = {
@@ -13,4 +14,5 @@ export  const Plugins = {
     divergence: DivergencePage,
     three: ThreePage,
     roots: RootsPage,
+    typeAnimation: TypeAnimationPage
 }

@@ -21,6 +21,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
 
+
+import Setting from './setting'
+
+
 const useStyles = makeStyles(theme => ({
   appBar: {
     position: 'relative',
@@ -38,11 +42,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 function App() {
+ 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  
+
+  useEffect(()=> {
+   
+    //customContainer.current.appendChild(gui.domElement)
+  }, [])
+
   const handleClickOpen = () => {
     setOpen(true);
+    //customContainer.current.appendChild(gui.domElement)
   };
 
   const handleClose = () => {
@@ -50,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" >
       <button onClick={handleClickOpen}>Setting</button>
       <Test />
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -67,14 +80,9 @@ function App() {
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
+        
+        <List >
+          <Setting/>
         </List>
       </Dialog>
     </div>

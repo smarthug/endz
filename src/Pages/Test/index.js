@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { virtualize, bindKeyboard } from "react-swipeable-views-utils";
 
-import { useStore, diversity, useStoryStore, history, storyAPI, rootAdder } from "../../global"
+import { useStore, diversity, useStoryStore, history, storyAPI, rootAdder, refList } from "../../global"
 
 import { Plugins } from "../../Plugins"
 
@@ -37,9 +37,17 @@ export default function Test() {
 
 
     const handleChangeIndex = index => {
+        console.log(index)
         setIndex(index);
+        // typing animation 시작 시키기 ... 어떻게 ? 
+        // 그래 컴포넌트에 대한 레퍼런스를 모아놓자 .... 
+        // ref.start() ,,,  
+        if(story[index].type == "typeAnimation"){
+
+            refList[0].start()
+        }
     };
-// add auto nextpage ... callback .... typist ... audio reader ,  if page has auto play property ... 여기서 타이피스트등 끝나는거 캐치해서 발동 
+    // add auto nextpage ... callback .... typist ... audio reader ,  if page has auto play property ... 여기서 타이피스트등 끝나는거 캐치해서 발동 
     return (
         <div>
 
@@ -54,6 +62,7 @@ export default function Test() {
 
             <VirtualizeSwipeableViews
                 index={index}
+                onSwitching={(index, type)=>{console.log(index, type)}}
                 onChangeIndex={handleChangeIndex}
                 slideRenderer={SlideRenderer}
                 slideCount={bookLength}
